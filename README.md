@@ -8,7 +8,6 @@ This is a full-stack web application that detects **bad posture** from a video o
 - ❌ Slouching while sitting
 - ❌ Neck bending > 30°
 
----
 
 ## 🌐 Live Demo
 
@@ -30,7 +29,7 @@ This is a full-stack web application that detects **bad posture** from a video o
 - React.js (with Hooks)
 - Tailwind CSS
 - Axios for HTTP requests
-- File upload & webcam support
+- File upload 
 
 ### Backend
 - Node.js + Express
@@ -45,10 +44,8 @@ This is a full-stack web application that detects **bad posture** from a video o
 posture-detector/
 ├── frontend/ # React frontend
 │ └── src/
-│ └── components/
 ├── backend/ # Node.js backend
 │ └── pose_logic.py # Python script using MediaPip
-
 
 ---
 
@@ -94,4 +91,4 @@ spine curve != straight → “Slouching”
 
 Author 
 Deekshitha VN
-deekshitha2612@gmail.com
+CONTACT  Email:deekshitha2612@gmail.com LikedIn:https://www.linkedin.com/in/deekshitha-vn/
