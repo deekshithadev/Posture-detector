@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
+const response = await axios.post(
+  `${BACKEND_URL}/upload`,
+  formData,
+  { headers: { 'Content-Type': 'multipart/form-data' } }
+);
+
 function App() {
   const [videoFile, setVideoFile] = useState(null);
   const [feedback, setFeedback] = useState([]);
