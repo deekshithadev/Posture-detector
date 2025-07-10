@@ -28,6 +28,10 @@ def detect_posture(video_path):
                 break
 
             frame_num += 1
+
+             if frame_num % 5 != 0:
+                continue 
+                
             image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             results = pose.process(image_rgb)
 
