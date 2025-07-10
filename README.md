@@ -1,120 +1,97 @@
-# 🧍‍♂️ Rule-Based Bad Posture Detection Web App
+# 🧍‍♂️ Posture Detector – Rule-Based Full-Stack App
 
-A full-stack web application that allows users to upload or record a video of themselves doing squats or sitting at a desk. The app uses rule-based logic with MediaPipe and OpenCV to detect and flag instances of bad posture (e.g., "knee ahead of toe", "back angle < 150°", etc.).
+This is a full-stack web application that detects **bad posture** from a video or webcam using rule-based logic powered by **MediaPipe**, **OpenCV**, and **Node.js**.
 
----
-
-## 📌 Features
-
-- 🎥 Upload or use webcam to submit a video
-- 🧠 Detects posture issues using MediaPipe (Python)
-- 📊 Shows real-time or frame-by-frame feedback
-- 🔁 Full-stack: React (Frontend) + Node.js + Python (Backend)
-- 🌐 Fully deployed and publicly accessible
+🔎 Detects posture issues like:
+- ❌ Knee ahead of toe (in squats)
+- ❌ Back angle < 150°
+- ❌ Slouching while sitting
+- ❌ Neck bending > 30°
 
 ---
 
-## 🚀 Live Demo
+## 🌐 Live Demo
 
-👉 [Live App URL (Vercel/Netlify)](https://your-frontend-deployment-url)
-
-📹 [Demo Video (YouTube/Drive/Loom)](https://your-demo-video-link)
+- **Frontend (React)**: [https://posture-detector-gilt.vercel.app](https://posture-detector-gilt.vercel.app)
+- **Backend (Render)**: [https://posture-detector-lwm0.onrender.com](https://posture-detector-lwm0.onrender.com)
 
 ---
 
-## 🛠️ Tech Stack
+## 🎥 Demo Video
 
-### Frontend:
-- React.js
+📽️ [Click here to view the demo](#)  
+*(Upload to YouTube, Loom, or Google Drive, and paste the link here)*
+
+---
+
+## 📦 Tech Stack
+
+### Frontend
+- React.js (with Hooks)
 - Tailwind CSS
-- Axios
+- Axios for HTTP requests
+- File upload & webcam support
 
-### Backend:
+### Backend
 - Node.js + Express
-- Python 3 + MediaPipe + OpenCV
-- Multer (for file uploads)
-- Child Process (for Python script execution)
+- Python (MediaPipe, OpenCV)
+- Multer for file upload handling
+- Spawn to run Python script from Node.js
 
 ---
 
-## 📁 Project Structure
+## 📁 Folder Structure
 
 posture-detector/
-├── frontend/ # React app
-├── backend/ # Node + Python
-│ ├── index.js # Express server
-│ ├── pose_detector.py# MediaPipe analysis script
-│ └── uploads/ # Temporary uploaded videos
+├── frontend/ # React frontend
+│ └── src/
+│ └── components/
+├── backend/ # Node.js backend
+│ └── pose_logic.py # Python script using MediaPip
 
 
 ---
 
-## 💻 How to Run Locally
+## 🚀 Setup Instructions (Local)
 
-### 📦 1. Clone the Repo
+### 🔧 Clone Repo
 
 ```bash
-git clone https://github.com/your-username/posture-detector.git
+git clone https://github.com/deekshithadev/posture-detector.git
 cd posture-detector
 
-🔧 2. Setup Backend
-cd backend
-npm install
-pip install -r requirements.txt  # or manually: pip install mediapipe opencv-python numpy
-node index.js
-
-Make sure you have Python and pip installed!
-
- 3. Setup Frontend
- cd ../frontend
+Frontend Setup
+bash
+Copy code
+cd frontend
 npm install
 npm start
+Runs on http://localhost:3000
 
- API Endpoint
-POST /upload
-Send: multipart/form-data with a video file
-Returns: JSON feedback with frame-by-frame posture issues
+Backend Setup
+Make sure Python 3.10+ is installed.
 
-Rule-Based Logic
-Implemented in pose_detector.py using MediaPipe:
+cd backend
+npm install
+pip install mediapipe opencv-python numpy
+node server.js
+Backend runs on http://localhost:5000
 
-Squat Detection:
+Posture Detection Logic
+✅ Rule-based detection via Python:
 
-Flag if knee goes ahead of toe
+Squat Mode:
 
-Flag if back angle < 150°
+knee_x > toe_x → “Knee ahead of toe”
 
-Desk Posture:
+back_angle < 150° → “Back angle too low”
 
-Flag if neck bends > 30°
+Desk Sitting:
 
-Flag if back isn’t straight
+neck angle > 30° → “Neck bend”
 
-📸 Demo Video Includes:
-Uploading a video
+spine curve != straight → “Slouching”
 
-Backend processing (Node → Python)
-
-Live posture detection feedback
-
-Code overview (optional)
-
-Deployment Used
-Frontend: Vercel / Netlify
-
-Backend: Render / Railway
-
-Railway
-
-🙌 Acknowledgements
-Google MediaPipe
-
-OpenCV
-
-Realfy Team
-
-🧑‍💻 Author
-Deekshitha V N
-Full Stack Developer Intern
-Connect on LinkedIn
-
+Author 
+Deekshitha VN
+deekshitha2612@gmail.com
