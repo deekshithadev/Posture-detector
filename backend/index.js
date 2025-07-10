@@ -53,6 +53,10 @@ app.post('/upload', upload.single('video'), (req, res) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.send("Posture Detection Backend is Running 🚀");
+});
+
 // Start server
 app.listen(port, () => {
   console.log(`✅ Backend server running at http://localhost:${port}`);
