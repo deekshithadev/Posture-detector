@@ -6,7 +6,6 @@ const app = express();
 const port = 5000;
 
 // Middleware
-const cors = require('cors');
 
 const corsOptions = {
   origin: 'https://posture-detector-gilt.vercel.app', 
