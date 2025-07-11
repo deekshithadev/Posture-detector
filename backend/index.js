@@ -6,7 +6,14 @@ const app = express();
 const port = 5000;
 
 // Middleware
-app.use(cors());
+const cors = require('cors');
+
+const corsOptions = {
+  origin: 'https://posture-detector-gilt.vercel.app', 
+  methods: ['GET', 'POST'],
+};
+
+app.use(cors(corsOptions)); 
 app.use(express.json());
 
 // Multer setup
