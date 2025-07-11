@@ -4,6 +4,9 @@ import numpy as np
 import sys
 import json
 
+print("✅ Pose detector script started", file=sys.stderr)
+sys.stderr.flush()
+
 mp_pose = mp.solutions.pose
 
 def calculate_angle(a, b, c):
@@ -29,9 +32,10 @@ def detect_posture(video_path):
 
             frame_num += 1
 
-             if frame_num % 5 != 0:
-                continue 
-                
+            # ✅ Sample every 5th frame to reduce load
+            if frame_num % 5 != 0:
+                continue
+
             image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             results = pose.process(image_rgb)
 
@@ -59,6 +63,9 @@ def detect_posture(video_path):
 
     cap.release()
     print(json.dumps(feedback))  # Output as JSON
+
+    print("✅ Done", file=sys.stderr)
+    sys.stderr.flush()
 
 if __name__ == "__main__":
     detect_posture(sys.argv[1])
