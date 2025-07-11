@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: posture-detector
+    env: node
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10
+
+  - type: worker
+    name: posture-detector-python
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: ""
