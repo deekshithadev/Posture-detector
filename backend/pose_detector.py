@@ -4,6 +4,7 @@ import numpy as np
 import sys
 import json
 
+# Debug: Notify script started
 print("✅ Pose detector script started", file=sys.stderr)
 sys.stderr.flush()
 
@@ -20,7 +21,7 @@ def calculate_angle(a, b, c):
     return angle
 
 def detect_posture(video_path):
-    cap = cv2.VideoCapture(video_path)
+    cap = cv2.VideoCapture(video_path.strip())  # strip() to remove accidental newline/space
     feedback = []
 
     with mp_pose.Pose(static_image_mode=False) as pose:
@@ -32,7 +33,7 @@ def detect_posture(video_path):
 
             frame_num += 1
 
-            # ✅ Sample every 5th frame to reduce load
+            # ✅ Process every 5th frame
             if frame_num % 5 != 0:
                 continue
 
@@ -50,22 +51,26 @@ def detect_posture(video_path):
                     landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y]
             ankle = [landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].x,
                      landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y]
-
             shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,
                         landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
 
             back_angle = calculate_angle(shoulder, hip, knee)
             if back_angle < 150:
-                feedback.append({"frame": frame_num, "issue": f"Back angle < 150° ({round(back_angle)}°)"})
+                feedback.append({
+                    "frame": frame_num,
+                    "issue": f"Back angle < 150° ({round(back_angle)}°)"
+                })
 
             if knee[0] > ankle[0]:
-                feedback.append({"frame": frame_num, "issue": "Knee ahead of toe"})
+                feedback.append({
+                    "frame": frame_num,
+                    "issue": "Knee ahead of toe"
+                })
 
     cap.release()
-    print(json.dumps(feedback))  # Output as JSON
-
-    print("✅ Done", file=sys.stderr)
-    sys.stderr.flush()
+    print(json.dumps(feedback))  # ✅ Output JSON to stdout
 
 if __name__ == "__main__":
     detect_posture(sys.argv[1])
+    print("✅ Done", file=sys.stderr)
+    sys.stderr.flush()

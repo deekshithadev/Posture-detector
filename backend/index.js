@@ -8,7 +8,7 @@ const port = 5000;
 // Middleware
 
 const corsOptions = {
-  origin: 'https://posture-detector-gilt.vercel.app', 
+  origin: 'http://localhost:3000', 
   methods: ['GET', 'POST'],
 };
 
